@@ -5,6 +5,7 @@
 
   namespace :admin do
     resources :posts
+    resources :settings, only: [:new, :create, :edit, :update]
     resources :dashboard, only: [:index]
     resources :notifications, only: [:index, :destroy]
     resources :messages, only: [:index, :show, :update, :destroy]
