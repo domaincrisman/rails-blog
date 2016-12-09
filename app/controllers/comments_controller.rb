@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
       flash[:notice] = "Successfully created new comment"
     else
       flash[:notice] = "There was a problem creating your comment"
+      set_visitor_sessions
     end
    
     redirect_to :back
@@ -16,6 +17,11 @@ class CommentsController < ApplicationController
   end
 
   def visitor
-    VisitorCommentService.new(visitor_comments_params).visitor
+    @visitor ||= VisitorCommentService.new(visitor_comments_params).visitor
+  end
+
+  def set_visitor_sessions
+    session[:visitor_errors] = visitor.errors.full_messages
+    session[:visitor_params] = visitor_comments_params
   end
 end
