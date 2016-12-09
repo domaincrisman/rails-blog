@@ -1,8 +1,8 @@
 class Message < ApplicationRecord
   belongs_to :visitor
 
+  validates :content, presence: true
   
-
   def self.matching_fullname_or_message params
     joins(:visitor).where("fullname LIKE ? OR message LIKE ?", "%#{params}%", "%#{params}%")
   end

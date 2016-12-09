@@ -11,4 +11,6 @@ class Comment < ApplicationRecord
   def self.matching_fullname_or_message params
     Post.joins(:visitor).where("fullname LIKE ? OR message LIKE ?", "%#{params}%", "%#{params}%")
   end
+
+  include Notifiable
 end

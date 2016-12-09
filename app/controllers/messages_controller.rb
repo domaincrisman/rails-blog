@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
   def create
     if visitor.save
       flash[:notice] = "Successfully sent your message"
-      redirect_to new_message_path
+      redirect_to new_message_path 
     else
       @visitor_message = visitor
       render :new

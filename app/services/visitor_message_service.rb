@@ -10,9 +10,10 @@ class VisitorMessageService
     build_existing_visitor_message || build_new_visitor_message
   end
 
+
   private
   
-  def existing_visitorvisitor
+  def existing_visitor
     @visitor ||= Visitor.find_by(email: params[:email])
   end
 
@@ -25,8 +26,8 @@ class VisitorMessageService
   end
 
   def build_existing_visitor_message
-    return unless existing_visitorvisitor
-    existing_visitorvisitor.tap do |v|
+    return unless existing_visitor
+    existing_visitor.tap do |v|
       v.messages << Message.new(message)
     end
   end
